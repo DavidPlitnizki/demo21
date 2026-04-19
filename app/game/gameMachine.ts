@@ -74,6 +74,7 @@ export function scoreDisplay(hand: PlayingCard[]): string {
   if (hand.length === 0) return '—';
   const soft = handScore(hand);
   const hard = hand.reduce((s, c) => {
+    if (c.special) return s;
     if (['J', 'Q', 'K'].includes(c.rank)) return s + 10;
     if (c.rank === 'A') return s + 1;
     return s + parseInt(c.rank);
